@@ -1,35 +1,32 @@
 package main
 
 import (
-    "machine"
-    "time"
+	"machine"
+	"time"
 )
 
 func main() {
-    led := machine.LED
-    led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	led := machine.LED
+	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
+	// Define parameters
+	var min, max int16 = 50, 500
+	var step int16 = 50
 
-		min := 50
-		max := 500
-
-		step := 50
-
-
-		for {
-			for i := min; i < max; i=i+step {
-        led.High()
-        time.Sleep(time.Millisecond * time.Duration(i))
-        led.Low()
-        time.Sleep(time.Millisecond * time.Duration(i))
-			}
-
-			for i := max; i > min; i=i-step {
-        led.High()
-        time.Sleep(time.Millisecond * time.Duration(i))
-        led.Low()
-        time.Sleep(time.Millisecond * time.Duration(i))
-			}
-
+	for {
+		for i := min; i < max; i=i+step {
+			led.High()
+			time.Sleep(time.Millisecond * time.Duration(i))
+			led.Low()
+			time.Sleep(time.Millisecond * time.Duration(i))
 		}
+
+		for i := max; i > min; i=i-step {
+			led.High()
+			time.Sleep(time.Millisecond * time.Duration(i))
+			led.Low()
+			time.Sleep(time.Millisecond * time.Duration(i))
+		}
+
+	}
 }
