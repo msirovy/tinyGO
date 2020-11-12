@@ -3,6 +3,7 @@ package main
 import (
 	"machine"
 	"time"
+//	"fmt"
 )
 
 func main() {
@@ -11,22 +12,18 @@ func main() {
 
 	// Define parameters
 	var min, max int16 = 50, 500
-	var step int16 = 50
+	var step, wt int16 = 50, 50
 
 	for {
-		for i := min; i < max; i=i+step {
-			led.High()
-			time.Sleep(time.Millisecond * time.Duration(i))
-			led.Low()
-			time.Sleep(time.Millisecond * time.Duration(i))
+		if wt > max || wt < min {
+			step = step * -1
 		}
+		wt += step
 
-		for i := max; i > min; i=i-step {
-			led.High()
-			time.Sleep(time.Millisecond * time.Duration(i))
-			led.Low()
-			time.Sleep(time.Millisecond * time.Duration(i))
-		}
+		led.High()
+		time.Sleep(time.Millisecond * time.Duration(wt))
+		led.Low()
+		time.Sleep(time.Millisecond * time.Duration(wt))
 
 	}
 }
