@@ -1,3 +1,10 @@
+help:
+	@echo "blink"
+	@echo "blink_ext"
 
-flask:
+blink:
 	tinygo flash -target arduino -port /dev/cu.usbmodem141201 blink.go
+
+blink_ext:
+	tinygo flash -target arduino -port /dev/cu.usbmodem141201 blink_ext.go
+
